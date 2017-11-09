@@ -1,0 +1,9 @@
+AuthUserFile /var/www/jrm/bookmarks/.passwd
+AuthGroupFile /dev/null
+AuthName "Login:"
+AuthType Basic
+
+<Limit PUT GET POST>
+require valid-user 
+</Limit>
+

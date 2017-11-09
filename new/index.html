@@ -1,0 +1,25 @@
+<html>
+<head>
+<script language="JavaScript1.2">
+function snoopsize(){
+	if (window.innerWidth){
+		//window.innerWidth
+		//window.innerHeight
+		window.location.href = "index.cgi?width=" + window.innerWidth + "&height=" + window.innerHeight;
+	}
+	//else if browser supports document.all (IE 4+)
+	else if (document.all){
+		//document.body.clientWidth
+		//document.body.clientHeight
+		window.location.href = "index.cgi?width=" + document.body.clientWidth + "&height=" + document.body.clientHeight;
+	}
+
+}
+</script>
+</head>
+<body>
+<script language="Javascript">
+snoopsize();
+</script>
+</body>
+</html>

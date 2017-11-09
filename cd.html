@@ -1,0 +1,72 @@
+<html>
+<head>
+		
+<script LANGUAGE="JavaScript">	
+function CD_UD(s,id){
+	CD_OBJS[id].innerHTML=s
+};
+function CD_T(id,e){
+	var n=new Date();
+	//var p=1E3-n.getMilliseconds();
+	p = 10;
+	setTimeout("CD_T('"+id+"',"+e+")",p);
+	CD_D(+n,id,e)
+};
+function CD_D(n,id,e){
+	var ms=e-n;
+	if(ms<=0) ms*=-1;
+	var d=Math.floor(ms/864E5);
+	ms-=d*864E5;
+	var h=Math.floor(ms/36E5);
+	ms-=h*36E5;
+	var m=Math.floor(ms/6E4);
+	ms-=m*6E4;
+	var s=(ms/1E3);
+	
+	CD_UD(d+" day"+(d==1?" ":"s ")+CD_ZP(h)+" hours "+CD_ZP(m)+" min "+CD_ZP(s)+" sec",id)
+};
+
+function CD_ZP(i){
+	return(i<10?"0"+i:i)
+};
+
+function CD_Init(){
+	var pref="countdown";
+var objH=1;
+if(document.getElementById||document.all){for(var i=1;objH;++i){
+	var id=pref+i;
+objH=document.getElementById?document.getElementById(id):document.all[id];
+if(objH&&(typeof objH.innerHTML)!='undefined'){var s=objH.innerHTML;
+var dt=new Date(s);
+if(!isNaN(dt)){CD_OBJS[id]=objH;
+CD_T(id,dt.valueOf());
+if(objH.style){
+	objH.style.visibility="visible"}
+}
+else {objH.innerHTML=s+"<a href=\"http://andrewu.co.uk/clj/countdown/\" title=\"Countdown Error:Invalid date format used,check documentation (see link)\">*</a>"}}}}
+};
+
+var CD_OBJS=new Object();
+if(window.attachEvent){
+	window.attachEvent('onload',CD_Init)
+	}
+else if(window.addEventListener){
+	window.addEventListener("load",CD_Init,false)
+}
+else {window.onload=CD_Init};
+</script>
+<style type="text/css">
+	td{font-family: verdana;}
+</style>
+</head>
+<body><center>
+<p>
+<table border="1" cellspacing="0" width="400" cellpadding="10"><tr><td>
+<b>PC countdown</b><br>
+<span id="countdown1" style="font-family: verdana;">4 Nov 2005 10:00:00 UTC-1200</span>
+<p>Time is subject to change... </td></tr></table>
+	<img src="http://www.designofsignage.com/application/symbol/hands/image/600x600/hand-cross.jpg">
+
+</center>
+</body>
+</html>

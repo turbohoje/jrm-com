@@ -1,0 +1,8 @@
+#!/usr/local/bin/perl
+
+open(FILE, ">>myspacetracker.log");
+print FILE $ENV{'QUERY_STRING'}."\n";
+close(FILE);
+
+print "Content-type:text/html\n\n";
+print qq(<html><body onLoad="javascript:this.close();"></body></html>);
