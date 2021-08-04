@@ -1,4 +1,6 @@
 # jrm-com
 personal website http://justinrmeyer.com
 
-sloppy placeholder for contact information et al.
+vanity domain and contact information et al.
+
+design found on hossain-khan's website
