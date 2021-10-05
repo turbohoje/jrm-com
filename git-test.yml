@@ -1,0 +1,120 @@
+image:
+  name: hashicorp/terraform:1.0.7
+  entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+
+before_script:
+  - export GOOGLE_CREDENTIALS=.gcp/identity.json
+
+
+terraform-init:
+  environment: dev
+  tags:
+    - crusoe-terraform
+  cache:
+    key: dev-$CI_COMMIT_REF_SLUG
+    paths:
+      - .terraform
+      - .terraform.lock.hcl
+      - .gcp
+  script:
+    - echo "Cred Setup"
+    - mkdir -p .gcp/
+    - echo $GCP_JSON_SA | base64 -d > .gcp/identity.json  #FIXME: temporary, replace with proper secret one day
+    - terraform init
+      -backend-config="address=https://gitlab.com/api/v4/projects/$GITLAB_PROJECT_ID/terraform/state/$STATE_NAME"
+      -backend-config="lock_address=https://gitlab.com/api/v4/projects/$GITLAB_PROJECT_ID/terraform/state/$STATE_NAME/lock"
+      -backend-config="unlock_address=https://gitlab.com/api/v4/projects/$GITLAB_PROJECT_ID/terraform/state/$STATE_NAME/lock"
+      -backend-config="username=$GITLAB_USER_NAME"
+      -backend-config="password=$GITLAB_ACCESS_TOKEN"
+      -backend-config="lock_method=POST"
+      -backend-config="unlock_method=DELETE"
+      -backend-config="retry_wait_min=5"
+    - terraform validate
+
+
+
+terraform-plan:
+  environment: dev
+  tags:
+    - crusoe-terraform
+  cache:
+    key: dev-$CI_COMMIT_REF_SLUG
+    paths:
+      - .terraform
+      - .terraform.lock.hcl
+      - .gcp
+  needs:
+    - job: terraform-init
+  script:
+    - echo "PLAN"
+    - terraform plan -var-file=dev.tfvars
+
+
+terraform-apply:
+  environment: dev
+  tags:
+    - crusoe-terraform
+  cache:
+    key: dev-$CI_COMMIT_REF_SLUG
+    paths:
+      - .terraform
+      - .terraform.lock.hcl
+      - .gcp
+  rules:
+    - when: manual
+  needs:
+    - job: terraform-plan
+  script:
+    - echo "Apply"
+    - terraform apply -var-file=dev.tfvars -auto-approve
+
+
+terraform-init-plan-prod:
+  environment: prod
+  tags:
+    - crusoe-terraform
+  cache:
+    key: prod-$CI_COMMIT_REF_SLUG
+    paths:
+      - .terraform
+      - .terraform.lock.hcl
+      - .gcp
+  needs:
+    - job: terraform-plan
+  script:
+    - echo "Cred Setup"
+    - mkdir -p .gcp/
+    - echo $GCP_JSON_SA | base64 -d > .gcp/identity.json  #FIXME: temporary, replace with proper secret one day
+    - terraform init
+      -backend-config="address=https://gitlab.com/api/v4/projects/$GITLAB_PROJECT_ID/terraform/state/$STATE_NAME"
+      -backend-config="lock_address=https://gitlab.com/api/v4/projects/$GITLAB_PROJECT_ID/terraform/state/$STATE_NAME/lock"
+      -backend-config="unlock_address=https://gitlab.com/api/v4/projects/$GITLAB_PROJECT_ID/terraform/state/$STATE_NAME/lock"
+      -backend-config="username=$GITLAB_USER_NAME"
+      -backend-config="password=$GITLAB_ACCESS_TOKEN"
+      -backend-config="lock_method=POST"
+      -backend-config="unlock_method=DELETE"
+      -backend-config="retry_wait_min=5"
+    - terraform validate
+    - terraform plan -var-file=prod.tfvars
+
+terraform-apply-prod:
+  environment: prod
+  tags:
+    - crusoe-terraform
+  cache:
+    key: prod-$CI_COMMIT_REF_SLUG
+    paths:
+      - .terraform
+      - .terraform.lock.hcl
+      - .gcp
+  when: manual
+  only:
+    - maintainers
+  needs:
+    - job: terraform-init-plan-prod
+  script:
+    - echo "PROD Apply"
+    - terraform apply -var-file=prod.tfvars -auto-approve
+
