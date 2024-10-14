@@ -31,6 +31,10 @@
 
   gtag('config', 'UA-42536493-1');
 </script>
+
+    <!-- calendar js files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
 </head>
 
 <body>
@@ -60,18 +64,10 @@
 		<div class="primary col-md-8 col-sm-12 col-xs-12">
 			<section class="about section">
 				<div class="section-inner">
-					<h2 class="heading">Personal Website / About Me</h2>
+					<h2 class="heading">Calendar / Availability</h2>
 					<div class="content">
-						<p></p>
-						<p><i class="fa fa-calendar"></i><span class="sr-only"></span> <a href="https://calendar.google.com/calendar/embed?src=justin%40rocketscience.cc" target="cal">Availability Calendar</p>
-					
-				
-						<!--
-						<b>2023-10-05</b><br/>
-						<P>It has been <a href="https://gitlab.com/jmeyer74" target="gl">a busy couple of years</a>.  I'm looking for my next journey.<br>
-						<img width="100%" src="assets/images/2023gitlab.png">
-						-->
-
+						<p>Blue == busy</p>
+						<p><canvas id="calendarCanvas" width="800" height="600"></canvas></p>
 					</div><!--//content-->
 				</div><!--//section-inner-->
 			</section><!--//section-->
@@ -541,6 +537,7 @@
 <script src="assets/plugins/jquery-rss/dist/jquery.rss.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/3.0.2/es6-promise.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/0.10.1/fetch.min.js"></script>
+<script src="cal.js"></script>
 <!-- custom js - initializes RSS, Github Calendar, Skills and so on -->
 <script src="assets/js/main.js"></script>
 </body>
