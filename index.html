@@ -35,6 +35,23 @@
     <!-- calendar js files -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
+
+	<style>
+		.responsive-container {
+		  position: relative;
+		  width: 100%;
+		  max-width: 800px;
+		  max-height: 600px;
+		  overflow: hidden;
+		}
+	
+		.responsive-canvas {
+		  width: 100%;
+		  height: auto;
+		  max-height: 100%;
+		  display: block; /* Ensures the canvas behaves like an image */
+		}
+	  </style>
 </head>
 
 <body>
@@ -67,7 +84,13 @@
 					<h2 class="heading">Calendar / Availability</h2>
 					<div class="content">
 						<p>Blue == busy</p>
-						<p><canvas id="calendarCanvas" width="800" height="600"></canvas></p>
+						
+						<!--p><canvas id="calendarCanvas"></canvas></p-->
+						<div class="container mt-5">
+							<div class="responsive-container border border-primary">
+							  <canvas id="calendarCanvas" class="responsive-canvas" width="650" height="500"></canvas>
+							</div>
+						  </div>
 					</div><!--//content-->
 				</div><!--//section-inner-->
 			</section><!--//section-->

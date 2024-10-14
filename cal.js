@@ -26,10 +26,10 @@ const canvas = document.getElementById('calendarCanvas');
             ctx.font = '12px Arial';
             for (let i = 0; i < 7; i++) {
                 ctx.fillStyle = 'black';
-                ctx.textAlign = 'center';
+                ctx.textAlign = 'left';
                 const dayName = days[i];
                 const date = moment().startOf('week').add(i + weekOffset * 7, 'days').format('MMM D');
-                ctx.fillText(`${dayName} ${date}`, i * dayWidth + dayWidth / 2, yOffset + 15);
+                ctx.fillText(`${dayName} ${date}`, i * dayWidth , yOffset + 15);
             }
 
             // Draw vertical grid lines for days
@@ -65,8 +65,7 @@ const canvas = document.getElementById('calendarCanvas');
         }
 
         // Your Google API key
-        const apiKey = 'AIzaSyAVABSEuYuWqa9pNWX6HoJxz-sLUamUiFg'; // Replace with your actual API key
-
+        const apiKey = 'AIzaSyAVABSEuYuWqa9pNWX6HoJxz-sLUamUiFg'; // key has to be public :( restricted by api and website
         // Calendar ID
         const calendarId = 'justin@rocketscience.cc';
 
