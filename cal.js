@@ -1,7 +1,7 @@
 const canvas = document.getElementById('calendarCanvas');
         const ctx = canvas.getContext('2d');
-
-        const canvasWidth = canvas.width;
+        const rightmargin = 40;
+        const canvasWidth = canvas.width - rightmargin;
         const canvasHeight = canvas.height;
 
 
@@ -13,7 +13,7 @@ const canvas = document.getElementById('calendarCanvas');
         const numberOfWeeks = 2; // Display two weeks
         const weekHeight = (canvasHeight - 20) / numberOfWeeks;
         const dayWidth = canvasWidth / 7;
-        const timeStart = 7; // 7 AM
+        const timeStart = 6; // 7 AM
         const timeEnd = 18; // 6 PM
         const timeRange = timeEnd - timeStart;
         const hourHeight = (weekHeight - 20) / timeRange;
@@ -54,7 +54,7 @@ const canvas = document.getElementById('calendarCanvas');
                 // Label the time on the right side of the canvas
                 const hour = timeStart + i;
                 ctx.fillStyle = 'black';
-                ctx.fillText(hour + ':00', canvasWidth - 5, y - 2);
+                ctx.fillText(hour + ':00', canvasWidth - 5 + rightmargin, y + 4);
             }
         }
 
