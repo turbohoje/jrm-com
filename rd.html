@@ -4,18 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-42536493-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-42536493-1');
+    </script>
+    
     <script>
         // Get the query string (everything after the ?)
         const queryString = window.location.search.substring(1);
         
-        // If there's a query string, redirect to Amazon with affiliate tag
-        if (queryString) {
-            const amazonUrl = `https://www.amazon.com/dp/${queryString}/?tag=turbohoje-20`;
-            window.location.replace(amazonUrl);
-        } else {
-            // If no product code provided, redirect to Amazon homepage
-            window.location.replace('https://www.amazon.com/?tag=turbohoje-20');
-        }
+        // Small delay to allow Google Analytics to track the page view
+        setTimeout(function() {
+            // If there's a query string, redirect to Amazon with affiliate tag
+            if (queryString) {
+                const amazonUrl = `https://www.amazon.com/dp/${queryString}/?tag=turbohoje-20`;
+                window.location.replace(amazonUrl);
+            } else {
+                // If no product code provided, redirect to Amazon homepage
+                window.location.replace('https://www.amazon.com/?tag=turbohoje-20');
+            }
+        }, 300); // 300ms delay - enough for GA tracking, fast enough users won't notice
     </script>
 </head>
 <body>
