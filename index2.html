@@ -114,22 +114,27 @@
 						</div>
 
 						<script>
-						// Auto-detect browser TZ and select it in the dropdown.
-						// Runs after DOM is ready; cal2.js loads later and reads window.calViewerTZ.
+						// Select element is already in the DOM above this script tag.
+						// Set calViewerTZ immediately so cal2.js (loaded at page bottom) picks it up.
 						(function () {
 							var browserTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
 							window.calViewerTZ = browserTZ;
-							document.addEventListener('DOMContentLoaded', function () {
-								var sel = document.getElementById('tzSelector');
-								for (var i = 0; i < sel.options.length; i++) {
-									if (sel.options[i].value === browserTZ) {
-										sel.selectedIndex = i;
-										break;
-									}
+
+							var sel = document.getElementById('tzSelector');
+
+							// Pre-select the browser TZ if it's in the list
+							for (var i = 0; i < sel.options.length; i++) {
+								if (sel.options[i].value === browserTZ) {
+									sel.selectedIndex = i;
+									break;
 								}
-								sel.addEventListener('change', function () {
-									if (window.redrawCalendar) window.redrawCalendar(this.value);
-								});
+							}
+
+							// Redraw whenever the user picks a different timezone
+							sel.addEventListener('change', function () {
+								if (window.redrawCalendar) {
+									window.redrawCalendar(this.value);
+								}
 							});
 						})();
 						</script>
