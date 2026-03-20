@@ -576,3 +576,10 @@ html{
     margin-top: 8px;
   }
 }
+
+/* Timezone dropdown */
+#tzSelector {
+    color: #000000;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+}

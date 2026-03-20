@@ -191,4 +191,11 @@
   .graph-before-activity-overview {
     filter: invert(0.7) !important;
   }
+
+  /* Keep timezone dropdown readable in dark mode */
+  #tzSelector {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    border-color: #aaaaaa !important;
+  }
 }
