@@ -83,14 +83,56 @@
 				<div class="section-inner">
 					<h2 class="heading">Calendar / Availability</h2>
 					<div class="content">
-						<p>Times below in US/Denver.  blue == busy</p>
-						
-						<!--p><canvas id="calendarCanvas"></canvas></p-->
+						<p style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+							<span>Justin's schedule (US/Denver). Blue&nbsp;=&nbsp;busy.</span>
+							<label for="tzSelector" style="margin:0;font-weight:normal;">Your timezone:</label>
+							<select id="tzSelector" style="padding:2px 6px;">
+								<option value="America/New_York">US Eastern (ET)</option>
+								<option value="America/Chicago">US Central (CT)</option>
+								<option value="America/Denver">US Mountain (MT)</option>
+								<option value="America/Los_Angeles">US Pacific (PT)</option>
+								<option value="America/Anchorage">US Alaska (AKT)</option>
+								<option value="Pacific/Honolulu">US Hawaii (HT)</option>
+								<option value="UTC">UTC</option>
+								<option value="Europe/London">London (GMT/BST)</option>
+								<option value="Europe/Paris">Central Europe (CET)</option>
+								<option value="Europe/Helsinki">Eastern Europe (EET)</option>
+								<option value="Europe/Moscow">Moscow (MSK)</option>
+								<option value="Asia/Dubai">Dubai (GST)</option>
+								<option value="Asia/Kolkata">India (IST)</option>
+								<option value="Asia/Singapore">Singapore/HK (SGT)</option>
+								<option value="Asia/Tokyo">Japan (JST)</option>
+								<option value="Australia/Sydney">Sydney (AEST)</option>
+								<option value="Pacific/Auckland">Auckland (NZST)</option>
+							</select>
+						</p>
+
 						<div class="container mt-5">
 							<div class="responsive-container border border-primary">
 							  <canvas id="calendarCanvas" class="responsive-canvas" width="650" height="500"></canvas>
 							</div>
-						  </div>
+						</div>
+
+						<script>
+						// Auto-detect browser TZ and select it in the dropdown.
+						// Runs after DOM is ready; cal2.js loads later and reads window.calViewerTZ.
+						(function () {
+							var browserTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+							window.calViewerTZ = browserTZ;
+							document.addEventListener('DOMContentLoaded', function () {
+								var sel = document.getElementById('tzSelector');
+								for (var i = 0; i < sel.options.length; i++) {
+									if (sel.options[i].value === browserTZ) {
+										sel.selectedIndex = i;
+										break;
+									}
+								}
+								sel.addEventListener('change', function () {
+									if (window.redrawCalendar) window.redrawCalendar(this.value);
+								});
+							});
+						})();
+						</script>
 					</div><!--//content-->
 				</div><!--//section-inner-->
 			</section><!--//section-->
