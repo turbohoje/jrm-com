@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Justin Meyer</title>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Vanity web domain for justin meyer">
+	<meta name="author" content="Justin Meyer">
+	<meta name="theme-color" content="#78909c">
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	<!-- Global CSS -->
+	<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+
+	<!-- Theme CSS -->
+	<link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+	<link id="theme-style-dark" rel="stylesheet" href="assets/css/dark-mode.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42536493-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42536493-1');
+</script>
+
+    <!-- calendar js files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
+
+	<style>
+		.responsive-container {
+		  position: relative;
+		  width: 100%;
+		  max-width: 800px;
+		  max-height: 600px;
+		  overflow: hidden;
+		}
+	
+		.responsive-canvas {
+		  width: 100%;
+		  height: auto;
+		  max-height: 100%;
+		  display: block; /* Ensures the canvas behaves like an image */
+		}
+	  </style>
+</head>
+
+<body>
+<!-- ******HEADER****** -->
+<header class="header">
+	<div class="container">
+		<img class="profile-image img-responsive pull-left" src="assets/images/face.jpg" alt="Justin Meyer">
+		<div class="profile-content pull-left">
+			<h1 class="name">Justin Meyer</h1>
+			<h2 class="desc">AI/Software Engineer, Service Reliability Engineer, DevOps Evangelist, Data Scientist, Sailor, Pilot</h2>
+			<ul class="social list-inline">
+				<li><a href="https://justinrmeyer.info" target="_blank" aria-label="Resume Domain"><i class="fa fa-eye"></i></a></li>
+
+				<li><a href="https://www.linkedin.com/in/justin-meyer-536853b6" target="_blank" aria-label="LinkedIn Profile"><i class="fa fa-linkedin"></i></a></li>
+				<li><a href="https://github.com/turbohoje" target="_blank" aria-label="Github Profile"><i class="fa fa-github-alt"></i></a></li>
+				<li><a href="https://www.reddit.com/user/turbohoje" target="_blank" aria-label="Reddit"><i class="fa fa-reddit"></i></a></li>
+				<li><a href="https://www.youtube.com/c/BrockSaucerman" target="_blank" aria-label="Reddit"><i class="fa fa-youtube"></i></a></li>
+				<!--li class="last-item"><a href="https://www.instagram.com/brocksauce/" target="_blank" aria-label="Instagram Profile"><i class="fa fa-instagram"></i></a></li-->
+			</ul>
+		</div><!--//profile-->
+		<a class="btn btn-cta-primary pull-right" href="mailto:web@justinrmeyer.com"><i class="fa fa-paper-plane"></i> Contact Me</a>
+	</div><!--//container-->
+</header><!--//header-->
+
+<div class="container sections-wrapper">
+	<div class="row">
+		<div class="primary col-md-8 col-sm-12 col-xs-12">
+			<section class="about section">
+				<div class="section-inner">
+					<h2 class="heading">Calendar / Availability</h2>
+					<div class="content">
+						<p>Times below in US/Denver.  blue == busy</p>
+						
+						<!--p><canvas id="calendarCanvas"></canvas></p-->
+						<div class="container mt-5">
+							<div class="responsive-container border border-primary">
+							  <canvas id="calendarCanvas" class="responsive-canvas" width="650" height="500"></canvas>
+							</div>
+						  </div>
+					</div><!--//content-->
+				</div><!--//section-inner-->
+			</section><!--//section-->
+
+			<section class="latest section">
+				<div class="section-inner">
+					<h2 class="heading">Latest Meat-Space Projects</h2>
+					<div class="content">
+						<div class="item featured text-left"><!-- featured item-->
+							<h3 class="title"><a href="https://turbohoje.github.io/marmot/" target="_blank"><i class="fa fa-users"></i>GC a House</a></h3>
+							<p class="summary">I am managing, scheduling, budgeting and sometimes bending my own nails on a home build.  This is ongoing and is currently dried in. <a target="new" href="https://www.youtube.com/@jrm9412/videos">Daily Automated Timelapse</a> of the build.</p>
+
+							<div class="desc text-left">
+								<p></p>
+
+
+							</div><!--//desc-->
+						</div><!--//featured item-->
+
+						<div class="item featured text-left"><!-- featured item-->
+							<h3 class="title"><a href="https://imgur.com/gallery/sbdWonB" target="_blank"><i class="fa fa-users"></i>Heated Floor</a></h3>
+							<p class="summary">Heated floors via open loop hot water.  Oh the <strike>humanity</strike> legonella! JK it works far better than expected! <a href="https://www.reddit.com/r/DIY/comments/z6g8fq/hydronic_floor_heat_with_house_water_heater/" target="_blank">r/DIY</a></p>
+
+							<div class="desc text-left">
+								<p></p>
+
+
+							</div><!--//desc-->
+						</div><!--//featured item-->
+
+						<div class="item featured text-left"><!-- featured item-->
+							<h3 class="title"><a href="https://imgur.com/gallery/r4uJCYI" target="_blank"><i class="fa fa-users"></i>Grill</a></h3>
+							<p class="summary">The first project went so well with concrete, I re-upped for another ton of fun. <a href="https://www.reddit.com/r/DIY/comments/bxo1tu/diy_concrete_buildin_36_outdoor_wolf_grill_w_sink/" target="_blank">r/DIY</a></p>
+
+							<div class="desc text-left">
+								<p></p>
+
+
+							</div><!--//desc-->
+						</div><!--//featured item-->
+
+						<div class="item featured text-left"><!-- featured item-->
+							<h3 class="title"><a href="https://imgur.com/gallery/JJyH0" target="_blank"><i class="fa fa-users"></i>Fire Pit</a></h3>
+							<p class="summary">My first attempt at making anything out of concrete. <a href="https://www.reddit.com/r/DIY/comments/3mbgtg/diy_firepit/" target="_blank">r/DIY</a></p>
+
+							<div class="desc text-left">
+								<p>I made it to the front page of reddit with this one for a short period of time.  </p>
+								<p>Subsequent projects have also gone on r/DIY seeking cheap adoration</p>
+
+							</div><!--//desc-->
+						</div><!--//featured item-->
+
+
+						<div class="item featured text-left"><!-- featured item-->
+							<h3 class="title"><a href="https://imgur.com/gallery/FzPqfDu" target="_blank"><i class="fa fa-users"></i>Attic Exhaust Fan</a></h3>
+							<p class="summary">Rarely need AC in CO with this. <a href="https://www.reddit.com/r/DIY/comments/8grxop/whole_house_attic_fan_7000_cfm/">r/DIY</a></p>
+
+							<div class="desc text-left">
+								<p>Next Step will be to automate the AC system with zwave automatic windows.</p>
+							</div><!--//desc-->
+						</div><!--//featured item-->
+
+						<div class="item featured text-left"><!-- featured item-->
+							<h3 class="title"><a href="https://imgur.com/gallery/gFE3S" target="_blank"><i class="fa fa-users"></i>Pocket Mirror</a></h3>
+							<p class="summary">Using wasted space as a full length mirror in the bathroom. <a href="https://www.reddit.com/r/DIY/comments/89j4ov/pocket_mirror_a_pocket_door_replacement_while/" target="_blank">r/DIY</a></p>
+						</div><!--//featured item-->
+
+					</div><!--//content-->
+				</div><!--//section-inner-->
+			</section><!--//section-->
+
+
+			<section class="projects section">
+				<div class="section-inner">
+					<h2 class="heading"><i class="fa fa-github"></i>pen Source and 3d printering</h2>
+					<div class="content">
+						<div class="item">
+							<h3 class="title"><a href="https://github.com/turbohoje/can_feeder">Wet Catfood Feeder</a></h3>
+							<p class="summary">Wet cat food winch opener.  Runs off raspberry pi and cron jobs bec i'm a hack and this is good enough.</p>
+						</div><!--//item-->
+
+						<div class="item">
+							<h3 class="title"><a href="https://github.com/turbohoje/misc_models">Misc Models</a></h3>
+							<p class="summary">Various things not worthy of their own repo.</p>
+						</div><!--//item-->
+
+
+						<!-- Button to take to github profile page -->
+						<a class="btn btn-cta-secondary" href="https://github.com/turbohoje">More on Github <i class="fa fa-chevron-right"></i></a>
+
+					</div><!--//content-->
+				</div><!--//section-inner-->
+			</section><!--//section-->
+			<section class="resume-highlights section">
+				<div class="section-inner" style="position: relative;">
+					<h2 class="heading">Work Experience Summary</h2>
+					<div style="position: absolute; top: 30px; right: 20px;">
+						<a href="https://justinrmeyer.info" target="_blank">Full Resume</a>
+					</div>
+					<div class="content" id="resume-highlights-content">
+						<p class="text-muted"><i class="fa fa-spinner fa-spin"></i> Loading&hellip;</p>
+					</div>
+				</div>
+			</section>
+
+
+         <section class="experience section">
+				<div class="section-inner">
+					<h2 class="heading">Entrepreneurial Endeavors</h2>
+					<div class="content">
+
+                  <div class="item">
+							<h3 class="title">RocketScience Innovation LLC</a></span><br/>
+								<span class="year">2006 &ndash; 2026</span></h3>
+							<ul>
+								<li>Founder of a technology development company specializing in industrial IoT and infrastructure automation.</li>
+                        <li>13-year ongoing engagement with Open Range Access delivering oilfield data telemetry and monitoring solutions.</li>
+                        <li>Full-stack software development across Python, JavaScript, and Java with a focus on embedded systems and data pipeline engineering.</li>
+                        <li>Infrastructure and DevOps: cloud architecture, VPC design, and on-premise to cloud migrations.</li>
+                        <li>Hardware design including PCB layout, microcontroller firmware, and multi-modal communications (satellite, RF, cellular).</li>
+                        <li>Real-time telemetry ingestion, edge data processing, and ETL integration with production accounting and ERP systems.</li>
+							</ul>
+						</div><!--//item-->
+
+                  <div class="item">
+							<h3 class="title">codeffects.com LLC</a></span><br/>
+								<span class="year">2001 &ndash; 2006</span></h3>
+							<ul>
+								<li>Contract development company</li>
+                        <li>Development (PERL, Java, C/C++, JavaScript, AJAX, CSS, XSLT, RSS, SH, SEO)</li>
+                        <li>Web page and graphic design</li>
+                        <li>DevOps site hosting and co-lo setup</li>
+                        <li>Unix/Linux Administration</li>
+							</ul>
+						</div><!--//item-->
+               </div>
+         </section><!--//ent section-->
+		</div><!--//primary-->
+
+
+		<div class="secondary col-md-4 col-sm-12 col-xs-12">
+			<aside class="info aside section">
+				<div class="section-inner">
+					<h2 class="heading sr-only">Basic Information</h2>
+					<div class="content">
+						<ul class="list-unstyled">
+							<li><i class="fa fa-map-marker"></i><span class="sr-only">Location:</span>Denver, Colorado</li>
+							<li><i class="fa fa-envelope-o"></i><span class="sr-only">Email:</span><a href="mailto:justin@justinrmeyer.com">justin@justinrmeyer.com</a></li>
+							<li><i class="fa fa-link"></i><span class="sr-only">Website:</span><a href="https://justinrmeyer.info" target="_blank">resume : justinrmeyer.info</a></li>
+							<li><i class="fa fa-github"></i><span class="sr-only">Skype:</span><a href="https://github.com/turbohoje">github:turbohoje</a></li>
+							<li><i class="fa fa-github-alt"></i><span class="sr-only">Skype:</span><a href="https://gitlab.com/jmeyer74">gitlab:jmeyer74</a></li>
+							<li><i class="fa fa-google"></i><span class="sr-only">Google:</span><a href="#">turbohoje</a></li>
+							<li><i class="fa fa-youtube"></i><span class="sr-only">Youtube:</span><a href="https://www.youtube.com/turbohoje" target="_blank">turbohoje</a></li>
+							<li><i class="fa fa-phone"></i><span class="sr-only">Cell:</span><a href="#">303-834-7418</a></li>
+							<!--li><i class="fa fa-camera" aria-hidden="true"></i><span class="sr-only">Portfolio:</span><a href="https://404/">fotos</a></li>
+							<li><i class="fa fa-pencil"></i><span class="sr-only">Blog:</span><a href="https://404//">bloggies</a></li-->
+						</ul>
+					</div><!--//content-->
+				</div><!--//section-inner-->
+			</aside><!--//aside-->
+
+
+			<aside class="education aside section">
+				<div class="section-inner">
+					<h2 class="heading">Education</h2>
+					<div class="content">
+						<div class="item">
+							<h3 class="title"><i class="fa fa-graduation-cap"></i> MS Data Engineering / ML</h3>
+							<h4 class="university">Regis University Denver<span class="year"> (Aug 2020-Mar 23) summa cum laude</span></h4>
+						</div><!--//item-->
+					</div><!--//content-->
+
+					<div class="content">
+						<div class="item">
+							<h3 class="title"><i class="fa fa-graduation-cap"></i> BS Computer Science</h3>
+							<h4 class="university">University of Colorado at Boulder <span class="year">(Aug 1999- May 2004)</span></h4>
+						</div><!--//item-->
+					</div><!--//content-->
+
+
+				</div><!--//section-inner-->
+			</aside><!--//section-->
+
+			<aside class="education aside section">
+				<div class="section-inner">
+					<h2 class="heading">Certification</h2>
+					<div class="content">
+						<div class="item">
+							<h3 class="title"><i class="fa fa-graduation-cap"></i>Scrum Master</h3>
+							<h4 class="university">agileforall.com <span class="year">(Dec 2019)</span></h4>
+						</div><!--//item-->
+						<div class="item">
+							<h3 class="title"><i class="fa fa-graduation-cap"></i>Data Science with Python</h3>
+							<h4 class="university">General Assembly <span class="year">(Dec 2019)</span></h4>
+						</div><!--//item-->
+						<div class="item">
+							<h3 class="title"><i class="fa fa-graduation-cap"></i>Project Management Certification</h3>
+							<h4 class="university">pmi.org</h4>
+						</div><!--//item-->
+						<div class="item">
+							<h3 class="title"><i class="fa fa-graduation-cap"></i>Competent Communicator</h3>
+							<h4 class="university">toast masters</h4>
+						</div><!--//item-->
+					</div><!--//content-->
+				</div><!--//section-inner-->
+			</aside><!--//section-->
+
+			<aside class="languages aside section">
+				<div class="section-inner">
+					<h2 class="heading">Languages</h2>
+					<div class="content">
+						<ul class="list-unstyled">
+							<li class="item">
+								<i class="fa fa-language"></i> <span class="title"><strong>English:</strong></span>
+								<span class="level">Native Speaker <br class="visible-xs"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
+							</li><!--//item-->
+							<li class="item">
+								<i class="fa fa-language"></i> <span class="title"><strong>Spanish:</strong></span>
+								<span class="level">Proficiency <br class="visible-sm visible-xs"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half"></i></span>
+							</li><!--//item-->
+						</ul>
+					</div><!--//content-->
+				</div><!--//section-inner-->
+			</aside><!--//section-->
+
+			<aside class="languages aside section">
+				<div class="section-inner">
+					<h2 class="heading">Clouds</h2>
+					<div class="content">
+						<ul class="list-unstyled">
+							<li class="item">
+								<i class="fa fa-cloud"></i>&nbsp;<span class="title"><strong>Crusoe</strong></span>
+								<span class="level"> <br class="visible-xs"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
+							</li><!--//item-->
+							<li class="item">
+								<i class="fa fa-cloud"></i>&nbsp;<span class="title"><strong>Google</strong></span>
+								<span class="level"> <br class="visible-xs"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
+							</li><!--//item-->
+							<li class="item">
+								<i class="fa fa-cloud"></i>&nbsp;<span class="title"><strong>Aws</strong></span>
+								<span class="level"> <br class="visible-sm visible-xs"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half"></i></span>
+							</li><!--//item-->
+                     <li class="item">
+								<i class="fa fa-cloud"></i>&nbsp;<span class="title"><strong>Azure</strong></span>
+								<span class="level"> <br class="visible-sm visible-xs"><i class="fa fa-star"></i> <i class="fa fa-star-half"></i></span>
+							</li><!--//item-->
+						</ul>
+					</div><!--//content-->
+				</div><!--//section-inner-->
+			</aside><!--//section-->
+
+<!--			<aside class="list conferences aside section">-->
+<!--				<div class="section-inner">-->
+<!--					<h2 class="heading">Conferences</h2>-->
+<!--					<div class="content">-->
+<!--						<ul class="list-unstyled">-->
+<!--							<li><i class="fa fa-calendar"></i> 2019 - Kube Con - San Diego</li>-->
+<!--							<li><i class="fa fa-calendar"></i> 2017 - Kube Con - Austin</li>-->
+<!--						</ul>-->
+<!--					</div>&lt;!&ndash;//content&ndash;&gt;-->
+<!--				</div>&lt;!&ndash;//section-inner&ndash;&gt;-->
+<!--			</aside>&lt;!&ndash;//section&ndash;&gt;-->
+
+
+		</div><!--//secondary-->
+	</div><!--//row-->
+	<a href="#top" class="topbtn" aria-label="Scroll to top"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a>
+</div><!--//masonry-->
+
+<!-- ******FOOTER****** -->
+<footer class="footer">
+	<div class="container text-center">
+		<!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+		<small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+	</div><!--//container-->
+</footer><!--//footer-->
+
+<!-- Javascript -->
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/3.0.2/es6-promise.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/0.10.1/fetch.min.js"></script>
+<script src="cal2.js"></script>
+
+
+<script>
+(function () {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://justinrmeyer.info/resume.md', true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState !== 4) return;
+    var el = document.getElementById('resume-highlights-content');
+    if (xhr.status === 200) {
+      el.innerHTML = buildHighlights(xhr.responseText);
+    } else {
+      el.innerHTML = '<p class="text-muted">Could not load resume highlights.</p>';
+    }
+  };
+  xhr.send();
+
+  function esc(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function buildHighlights(md) {
+    // Strip YAML frontmatter
+    var fmEnd = md.indexOf('\n---\n');
+    if (fmEnd !== -1) md = md.slice(fmEnd + 5);
+
+    var expM = md.match(/## Experience\s*\n+([\s\S]*?)(?=\n## )/);
+    if (!expM) return '<p class="text-muted">No experience data found.</p>';
+
+    // Split into per-job blocks on ### boundaries
+    var blocks = expM[1].split(/(?=^### )/m).filter(function(b) { return /^### /.test(b); });
+    if (!blocks.length) return '<p class="text-muted">No positions found.</p>';
+
+    var html = '<ul class="list-unstyled">';
+    blocks.forEach(function (block) {
+      var titleM = block.match(/^### (.+)/m);
+      var dateM  = block.match(/^\*\*([^*]+)\*\*/m);
+      if (!titleM) return;
+      var title = esc(titleM[1].trim());
+      var date  = dateM ? esc(dateM[1].trim()) : '';
+      html += '<li style="display:flex;justify-content:space-between;padding:4px 0;">' +
+        '<span>' + title + '</span>' +
+        (date ? '<span style="white-space:nowrap;margin-left:12px;color:#888;">' + date + '</span>' : '') +
+        '</li>';
+    });
+    html += '</ul>';
+    return html;
+  }
+})();
+</script>
+<!-- custom js - initializes RSS, Github Calendar, Skills and so on -->
+</body>
+</html>
