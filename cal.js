@@ -11,7 +11,9 @@
     const timeStart = 6;
     const timeEnd = 18;
     const timeRange = timeEnd - timeStart;
-    const hourHeight = (weekHeight - 20) / timeRange;
+    const allDayRowHeight = 14;          // strip between day labels and timed grid
+    const gridTop = 20 + allDayRowHeight; // px from top of each week row where timed grid starts
+    const hourHeight = (weekHeight - gridTop) / timeRange;
 
     const hostTZ = 'America/Denver';
     const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
@@ -59,10 +61,17 @@
             ctx.stroke();
         }
 
+        // Bottom border of all-day strip
+        ctx.beginPath();
+        ctx.moveTo(0, yOffset + gridTop);
+        ctx.lineTo(canvasWidth, yOffset + gridTop);
+        ctx.strokeStyle = '#cccccc';
+        ctx.stroke();
+
         // Horizontal hour lines + viewer-TZ labels on right
         ctx.textAlign = 'right';
         for (let i = 0; i <= timeRange; i++) {
-            const y = yOffset + 20 + i * hourHeight;
+            const y = yOffset + gridTop + i * hourHeight;
             ctx.beginPath();
             ctx.moveTo(0, y);
             ctx.lineTo(canvasWidth, y);
@@ -78,6 +87,7 @@
     function drawEvents() {
         if (!cachedEvents) return;
         cachedEvents.forEach(function (event) {
+            const isAllDay  = !event.start.dateTime;
             const startDate = event.start.dateTime || event.start.date;
             const endDate   = event.end.dateTime   || event.end.date;
 
@@ -87,21 +97,37 @@
             const weekOffset = Math.floor(eventStartMT.diff(moment().startOf('week'), 'days') / 7);
             if (weekOffset < 0 || weekOffset >= numberOfWeeks) return;
 
-            const yOffset    = weekOffset * weekHeight;
-            const dayOfWeek  = eventStartMT.day();
-            const startHour  = eventStartMT.hour() + eventStartMT.minute() / 60;
-            const endHour    = eventEndMT.hour()   + eventEndMT.minute()   / 60;
+            const yOffset   = weekOffset * weekHeight;
+            const dayOfWeek = eventStartMT.day();
 
-            const eventStartHour = Math.max(startHour, timeStart);
-            const eventEndHour   = Math.min(endHour,   timeEnd);
+            if (isAllDay) {
+                // Google Calendar end date is exclusive (e.g. Apr 23 event ends Apr 24)
+                const spanDays = Math.min(eventEndMT.diff(eventStartMT, 'days'), 7 - dayOfWeek);
+                const x = dayOfWeek * dayWidth;
+                const w = spanDays * dayWidth;
 
-            const x      = dayOfWeek * dayWidth;
-            const y      = yOffset + 20 + (eventStartHour - timeStart) * hourHeight;
-            const height = (eventEndHour - eventStartHour) * hourHeight;
+                ctx.fillStyle = 'rgba(255, 160, 0, 0.55)';
+                ctx.fillRect(x + 1, yOffset + 20, w - 2, allDayRowHeight - 1);
 
-            if (height > 0) {
-                ctx.fillStyle = 'rgba(0, 128, 255, 0.5)';
-                ctx.fillRect(x + 1, y, dayWidth - 2, height);
+                ctx.font = '9px Arial';
+                ctx.fillStyle = '#000';
+                ctx.textAlign = 'left';
+                ctx.fillText(event.summary || '', x + 3, yOffset + 20 + allDayRowHeight - 3);
+            } else {
+                const startHour  = eventStartMT.hour() + eventStartMT.minute() / 60;
+                const endHour    = eventEndMT.hour()   + eventEndMT.minute()   / 60;
+
+                const eventStartHour = Math.max(startHour, timeStart);
+                const eventEndHour   = Math.min(endHour,   timeEnd);
+
+                const x      = dayOfWeek * dayWidth;
+                const y      = yOffset + gridTop + (eventStartHour - timeStart) * hourHeight;
+                const height = (eventEndHour - eventStartHour) * hourHeight;
+
+                if (height > 0) {
+                    ctx.fillStyle = 'rgba(0, 128, 255, 0.5)';
+                    ctx.fillRect(x + 1, y, dayWidth - 2, height);
+                }
             }
         });
     }
