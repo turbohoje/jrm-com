@@ -43,10 +43,17 @@
     function drawWeekGrid(weekOffset, yOffset, viewerTZ) {
         // Day labels
         ctx.font = '12px Arial';
+        const todayMT = moment().tz(hostTZ);
         for (let i = 0; i < 7; i++) {
-            ctx.fillStyle = 'black';
+            const dayMoment = moment().tz(hostTZ).startOf('week').add(i + weekOffset * 7, 'days');
+            const isToday = dayMoment.isSame(todayMT, 'day');
+            if (isToday) {
+                ctx.fillStyle = 'rgba(255, 210, 40, 0.55)';
+                ctx.fillRect(i * dayWidth, yOffset, dayWidth, 20);
+            }
+            ctx.fillStyle = isToday ? '#222' : 'black';
             ctx.textAlign = 'left';
-            const date = moment().startOf('week').add(i + weekOffset * 7, 'days').format('MMM D');
+            const date = dayMoment.format('MMM D');
             ctx.fillText(days[i] + ' ' + date, i * dayWidth, yOffset + 15);
         }
 
@@ -123,6 +130,31 @@
         });
     }
 
+    function drawPastOverlay() {
+        const nowMT = moment().tz(hostTZ);
+        const weekStart = moment().tz(hostTZ).startOf('week');
+
+        for (let week = 0; week < numberOfWeeks; week++) {
+            const yOffset = week * weekHeight;
+            for (let i = 0; i < 7; i++) {
+                const dayMoment = weekStart.clone().add(week * 7 + i, 'days');
+                const x = i * dayWidth;
+
+                if (dayMoment.isSame(nowMT, 'day')) {
+                    const currentHour = nowMT.hour() + nowMT.minute() / 60;
+                    if (currentHour > timeStart) {
+                        const pastHeight = (Math.min(currentHour, timeEnd) - timeStart) * hourHeight;
+                        ctx.fillStyle = 'rgba(0, 0, 0, 0.38)';
+                        ctx.fillRect(x + 1, yOffset + 20, dayWidth - 2, pastHeight);
+                    }
+                } else if (dayMoment.isBefore(nowMT, 'day')) {
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.40)';
+                    ctx.fillRect(x + 1, yOffset + 20, dayWidth - 2, weekHeight - 20);
+                }
+            }
+        }
+    }
+
     function draw(viewerTZ) {
         // Background
         ctx.fillStyle = '#5f5f5f';
@@ -135,6 +167,9 @@
 
         // Events (always positioned in host/MT time — grid never moves)
         drawEvents();
+
+        // Dim past days/hours on top of events
+        drawPastOverlay();
 
         // TZ badge top-right margin strip
         ctx.fillStyle = 'rgba(0,0,0,0.45)';
