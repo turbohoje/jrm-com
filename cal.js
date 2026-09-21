@@ -17,6 +17,7 @@
     const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
 
     let cachedEvents = null;
+    let hitRegions = [];
 
     function getViewerTZ() {
         return window.calViewerTZ || Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -82,7 +83,8 @@
         }
     }
 
-    function drawEvents() {
+    function drawEvents(viewerTZ) {
+        hitRegions = [];
         if (!cachedEvents) return;
         cachedEvents.forEach(function (event) {
             const isAllDay  = !event.start.dateTime;
@@ -111,6 +113,8 @@
 
                 ctx.fillStyle = 'rgba(0, 210, 255, 0.35)';
                 ctx.fillRect(x + 1, y, w - 2, height);
+
+                hitRegions.push({ x: x + 1, y: y, w: w - 2, h: height, label: 'busy: all day' });
             } else {
                 const startHour  = eventStartMT.hour() + eventStartMT.minute() / 60;
                 const endHour    = eventEndMT.hour()   + eventEndMT.minute()   / 60;
@@ -125,6 +129,11 @@
                 if (height > 0) {
                     ctx.fillStyle = 'rgba(0, 128, 255, 0.5)';
                     ctx.fillRect(x + 1, y, dayWidth - 2, height);
+
+                    const label = 'busy: '
+                        + eventStartMT.clone().tz(viewerTZ).format('HH:mm') + '-'
+                        + eventEndMT.clone().tz(viewerTZ).format('HH:mm');
+                    hitRegions.push({ x: x + 1, y: y, w: dayWidth - 2, h: height, label: label });
                 }
             }
         });
@@ -166,7 +175,7 @@
         }
 
         // Events (always positioned in host/MT time — grid never moves)
-        drawEvents();
+        drawEvents(viewerTZ);
 
         // Dim past days/hours on top of events
         drawPastOverlay();
@@ -179,6 +188,43 @@
         ctx.textAlign = 'center';
         ctx.fillText(shortTZName(viewerTZ), canvasWidth + rightmargin / 2, 10);
     }
+
+    // Hover tooltip for busy blocks
+    const tooltip = document.createElement('div');
+    tooltip.style.cssText = 'position:fixed;z-index:9999;display:none;pointer-events:none;'
+        + 'background:rgba(0,0,0,0.85);color:#fff;font:12px Arial;padding:3px 7px;border-radius:3px;white-space:nowrap;';
+    document.body.appendChild(tooltip);
+
+    function regionAt(canvasX, canvasY) {
+        for (let i = hitRegions.length - 1; i >= 0; i--) {
+            const r = hitRegions[i];
+            if (canvasX >= r.x && canvasX <= r.x + r.w && canvasY >= r.y && canvasY <= r.y + r.h) return r;
+        }
+        return null;
+    }
+
+    canvas.addEventListener('mousemove', function (e) {
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+        const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+        const region = regionAt(x, y);
+
+        if (region) {
+            tooltip.textContent = region.label;
+            tooltip.style.display = 'block';
+            tooltip.style.left = (e.clientX + 12) + 'px';
+            tooltip.style.top = (e.clientY + 12) + 'px';
+            canvas.style.cursor = 'pointer';
+        } else {
+            tooltip.style.display = 'none';
+            canvas.style.cursor = '';
+        }
+    });
+
+    canvas.addEventListener('mouseleave', function () {
+        tooltip.style.display = 'none';
+        canvas.style.cursor = '';
+    });
 
     // Expose redraw for the dropdown
     window.redrawCalendar = function (tz) {
